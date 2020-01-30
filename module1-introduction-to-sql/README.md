@@ -52,13 +52,76 @@ Use `sqlite3` to load and write queries to explore the data, and answer the
 following questions:
 
 - How many total Characters are there?
+
+# SELECT * FROM charactercreator_character = 302
+
 - How many of each specific subclass?
+
+# - SELECT * FROM charactercreator_charactercleric = 75
+# - SELECT * FROM charactercreator_fighter = 68
+# - SELECT * FROM charactercreator_mage = 108
+# - SELECT * FROM charactercreator_necromancer = 11
+# - SELECT * FROM charactercreator_thief = 51
+
 - How many total Items?
+
+# - SELECT * from armory_item = 174
+
 - How many of the Items are weapons? How many are not?
+
+# - SELECT * from armory_weapon = 37 are weapons,
+# - Total (armory_items = 174 - armory_weapons= 37)
+# - 137 armory items are not weapons.
+
 - How many Items does each character have? (Return first 20 rows)
+
+# SELECT COUNT(ai.name)
+# FROM charactercreator_character AS cc,
+# armory_item AS ai,
+# charactercreator_character_inventory AS cci
+# WHERE cc.character_id = cci.character_id
+# AND ai.item_id = cci.item_id
+# GROUP BY cc.character_id
+# LIMIT 20
+
+
+# Returns: Table with first 20 characters and how many items they each have.
+# (See rpg_db.oy)
+
+
+
 - How many Weapons does each character have? (Return first 20 rows)
+
+# SELECT COUNT(ai.name)
+# FROM charactercreator_character AS cc,
+# armory_item AS ai,
+# charactercreator_character_inventory AS cci,
+# armory_weapon as aw
+# WHERE cc.character_id = cci.character_id
+# AND ai.item_id = cci.item_id
+# AND ai.item_id = aw.item_ptr_id
+# GROUP BY cc.character_id
+# LIMIT 20;
+
+# Returns: Table with first 20 characters and how many weapons they each have.
+# (See rpg_db.oy)
+
 - On average, how many Items does each Character have?
+# SELECT AVG(item_count)
+# FROM (SELECT COUNT(item_id) as item_count
+# FROM charactercreator_character_inventory
+# GROUP BY character_id);
+
+# Returns: 2.97350993377483
+
 - On average, how many Weapons does each character have?
+# SELECT AVG(item_count)
+# FROM(SELECT COUNT(item_id) AS item_count
+# FROM charactercreator_character_inventory
+# INNER JOIN armory_weapon
+# ON item_id = item_ptr_id
+# GROUP BY character_id);
+
 
 You do not need all the tables - in particular, the `account_*`, `auth_*`,
 `django_*`, and `socialaccount_*` tables are for the application and do not have
