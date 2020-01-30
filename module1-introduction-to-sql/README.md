@@ -58,9 +58,13 @@ SELECT * FROM charactercreator_character = 302
 - How many of each specific subclass?
 
 SELECT * FROM charactercreator_charactercleric = 75
+
 SELECT * FROM charactercreator_fighter = 68
+
 SELECT * FROM charactercreator_mage = 108
+
 SELECT * FROM charactercreator_necromancer = 11
+
 SELECT * FROM charactercreator_thief = 51
 
 - How many total Items?
@@ -68,10 +72,19 @@ SELECT * FROM charactercreator_thief = 51
 SELECT * from armory_item = 174
 
 - How many of the Items are weapons? How many are not?
+-Solution using math:
 
     - SELECT * from armory_weapon = 37 are weapons,
     - Total (armory_items = 174 - armory_weapons= 37)
     - 137 armory items are not weapons.
+    
+- Solution using code:
+SELECT count(item_id)
+FROM armory_item
+WHERE item_id NOT  IN
+(
+SELECT item_ptr_id FROM armory_weapon
+)
 
 - How many Items does each character have? (Return first 20 rows)
 
