@@ -77,7 +77,7 @@ SELECT * from armory_item = 174
     - SELECT * from armory_weapon = 37 are weapons,
     - Total (armory_items = 174 - armory_weapons= 37)
     - 137 armory items are not weapons.
-    
+
 - Solution using code:
 SELECT count(item_id)
 FROM armory_item
@@ -136,6 +136,8 @@ FROM charactercreator_character_inventory
 INNER JOIN armory_weapon
 ON item_id = item_ptr_id
 GROUP BY character_id);
+
+Returns: 1.30967741935484
 
 
 You do not need all the tables - in particular, the `account_*`, `auth_*`,
