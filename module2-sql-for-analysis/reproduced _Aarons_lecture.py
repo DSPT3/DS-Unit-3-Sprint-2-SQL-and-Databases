@@ -7,8 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1CrqR41yAB2TSKWnANXAREusGUEy8ipAN
 """
 
-!pip install psycopg2-binary
-
 import psycopg2
 
 dir(psycopg2)
