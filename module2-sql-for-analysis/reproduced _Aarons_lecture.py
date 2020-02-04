@@ -7,8 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1CrqR41yAB2TSKWnANXAREusGUEy8ipAN
 """
 
-!pip install psycopg2-binary
-
 import psycopg2
 
 dir(psycopg2)
@@ -19,7 +17,7 @@ help(psycopg2.connect)
 
 dbname = 'gqblsofi'
 user = 'gqblsofi'
-password = 'tHqEcXdNtqAKxFTm1cjM8b4GT1bgq2w8'
+password = '1234'
 host = 'rajje.db.elephantsql.com'
 
 pg_conn = psycopg2.connect(dbname=dbname, user=user, password=password, host=host)
