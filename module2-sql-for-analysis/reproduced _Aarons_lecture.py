@@ -19,7 +19,7 @@ help(psycopg2.connect)
 
 dbname = 'gqblsofi'
 user = 'gqblsofi'
-password = 'tHqEcXdNtqAKxFTm1cjM8b4GT1bgq2w8'
+password = '1234'
 host = 'rajje.db.elephantsql.com'
 
 pg_conn = psycopg2.connect(dbname=dbname, user=user, password=password, host=host)
