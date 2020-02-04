@@ -42,7 +42,7 @@ the first two modules, rework/complete things as needed, and just check out with
 fresh eyes the SQL approach. Compare and contrast, and come with questions
 tomorrow - the main topic will be database differences and tradeoffs!
 
-## Resources and Stretch Goals
+## Resources and Stretch Goals - Fun challenge for sure
 
 Put Titanic data in Big Data! That is, try to load `titanic.csv` from yesterday
 into your MongoDB cluster.
