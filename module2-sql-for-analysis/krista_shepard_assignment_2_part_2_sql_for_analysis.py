@@ -1,6 +1,3 @@
-# Install pkg that allows me to pull from the elephantSQL  website
-!pip install psycopg2-binary
-
 # Import pkg and explore its directory
 import pandas as pd
 import psycopg2
