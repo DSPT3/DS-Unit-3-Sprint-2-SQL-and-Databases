@@ -65,24 +65,38 @@ necromancer = 11
 
 thief = 51
 
-- How many total Items?
-
-SELECT * from armory_item = 174
+- How many total Items?  174
 
 - How many of the Items are weapons? How many are not?
+
 -Solution using math:
 
     - SELECT * from armory_weapon = 37 are weapons,
-    - Total (armory_items = 174 - armory_weapons= 37)
+    - Total 
+    
+    (armory_items = 174 - armory_weapons= 37)
+
     - 137 armory items are not weapons.
 
-- Solution using code:
-SELECT count(item_id)
+- Solution using code in DB 
+
+Solution using code:
+
+query = '''SELECT count(item_id)
+
 FROM armory_item
+
 WHERE item_id NOT  IN
+
 (
+
 SELECT item_ptr_id FROM armory_weapon
-)
+
+)'''
+
+curs.execute(query)
+results = curs.fetchall()
+print('Non-weapons:', results[0][0])
 
 - How many Items does each character have? (Return first 20 rows)
 
