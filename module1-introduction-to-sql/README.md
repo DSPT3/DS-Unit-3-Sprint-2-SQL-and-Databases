@@ -80,85 +80,61 @@ thief = 51
       (armory_items = 174 - armory_weapons= 37)
     - 137 armory items are not weapons.
 
--Solution using code in DB: 
+-Solution using code: 
 
     - query = '''
     - SELECT count(item_id)
     - FROM armory_item
     - WHERE item_id NOT  IN
-    - (SELECT item_ptr_id FROM armory_weapon)
-'''
-
-curs.execute(query)
-
-results = curs.fetchall()
-
-print('Non-weapons:', results[0][0])
+    - (SELECT item_ptr_id FROM armory_weapon)'''
+    - curs.execute(query)
+    - results = curs.fetchall()
+    - print('Non-weapons:', results[0][0])
 
 **How many Items does each character have? (Return first 20 rows)**
 
-SELECT COUNT(ai.name)
-
-FROM charactercreator_character AS cc,
-
-armory_item AS ai,
-
-charactercreator_character_inventory AS cci
-
-WHERE cc.character_id = cci.character_id
-
-AND ai.item_id = cci.item_id
-
-GROUP BY cc.character_id
-
-LIMIT 20
-
+    - SELECT COUNT(ai.name)
+    - FROM charactercreator_character AS cc
+    - armory_item AS ai,
+    - charactercreator_character_inventory AS cci
+    - WHERE cc.character_id = cci.character_id
+    - AND ai.item_id = cci.item_id
+    - GROUP BY cc.character_id
+    - LIMIT 20
 
 **How many Weapons does each character have? (Return first 20 rows)**
 
-SELECT COUNT(ai.name)
-
-FROM charactercreator_character AS cc,
-
-armory_item AS ai,
-
-charactercreator_character_inventory AS cci,
-
-armory_weapon as aw
-
-WHERE cc.character_id = cci.
-
-AND ai.item_id = cci.
-
-AND ai.item_id = aw.
-
-GROUP BY cc.character_id
-
-LIMIT 20;
-
+   - SELECT COUNT(ai.name)
+   - FROM charactercreator_character AS cc,
+   - armory_item AS ai,
+   - charactercreator_character_inventory AS cci,
+   - armory_weapon as aw
+   - WHERE cc.character_id = cci.character_id
+   - AND ai.item_id = cci.item_id
+   - AND ai.item_id = aw.item_ptr_id
+   - GROUP BY cc.character_id
+   - LIMIT 20;
 
 **On average, how many Items does each Character have?**
-
-SELECT AVG(item_count)
-
-FROM (SELECT COUNT(item_id) as 
-
-FROM charactercreator_character_inventory
-
-GROUP BY character_id);
-
-Returns: 2.97350993377483
+   - SELECT
+   - CAST(COUNT(armory_weapon.item_ptr_id) as FLOAT) / COUNT(distinct   character_id) as avg_weapon_inv
+   - FROM charactercreator_character_inventory
+   - LEFT JOIN armory_weapon on 
+   - armory_weapon.item_ptr_id =
+    charactercreator_character_inventory.item_id  
+  
+Returns: 0.6721854304635762
 
 **On average, how many Weapons does each character have?**
+ - SELECT AVG(item_count)
+ - FROM(SELECT COUNT(item_id) AS item_count
+ - FROM charactercreator_character_inventory
+ - LEFT JOIN armory_weapon
+ - ON item_id = item_ptr_id
+ - GROUP BY character_id);
 
-SELECT AVG(item_count)
-FROM(SELECT COUNT(item_id) AS item_count
-FROM charactercreator_character_inventory
-INNER JOIN armory_weapon
-ON item_id = item_ptr_id
-GROUP BY character_id);
+ Returns 2.9735099337748343
 
-Returns: 1.30967741935484
 
 
 You do not need all the tables - in particular, the `account_*`, `auth_*`,
