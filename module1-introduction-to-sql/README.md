@@ -51,7 +51,7 @@ randomized, the numeric and boolean fields were left as defaults.
 Use `sqlite3` to load and write queries to explore the data, and answer the
 following questions:
 
-* How many total Characters are there? * 
+**How many total Characters are there?** 
 
 302
 
