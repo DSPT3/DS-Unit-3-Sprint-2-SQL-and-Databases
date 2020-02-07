@@ -82,19 +82,12 @@ thief = 51
 
 -Solution using code in DB: 
 
-Solution using code:
-
-query = '''SELECT count(item_id)
-
-FROM armory_item
-
-WHERE item_id NOT  IN
-
-(
-
-SELECT item_ptr_id FROM armory_weapon
-
-)'''
+    - query = '''
+    - SELECT count(item_id)
+    - FROM armory_item
+    - WHERE item_id NOT  IN
+    - (SELECT item_ptr_id FROM armory_weapon)
+'''
 
 curs.execute(query)
 
