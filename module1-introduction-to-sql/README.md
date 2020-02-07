@@ -51,21 +51,18 @@ randomized, the numeric and boolean fields were left as defaults.
 Use `sqlite3` to load and write queries to explore the data, and answer the
 following questions:
 
-- How many total Characters are there?
-
-SELECT * FROM charactercreator_character = 302
+- How many total Characters are there? 302
 
 - How many of each specific subclass?
+cleric = 75
 
-SELECT * FROM charactercreator_charactercleric = 75
+fighter = 68
 
-SELECT * FROM charactercreator_fighter = 68
+mage = 108
 
-SELECT * FROM charactercreator_mage = 108
+necromancer = 11
 
-SELECT * FROM charactercreator_necromancer = 11
-
-SELECT * FROM charactercreator_thief = 51
+thief = 51
 
 - How many total Items?
 
