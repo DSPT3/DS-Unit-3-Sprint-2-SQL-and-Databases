@@ -95,41 +95,52 @@ SELECT item_ptr_id FROM armory_weapon
 )'''
 
 curs.execute(query)
+
 results = curs.fetchall()
+
 print('Non-weapons:', results[0][0])
 
 - How many Items does each character have? (Return first 20 rows)
 
 SELECT COUNT(ai.name)
+
 FROM charactercreator_character AS cc,
+
 armory_item AS ai,
+
 charactercreator_character_inventory AS cci
+
 WHERE cc.character_id = cci.character_id
+
 AND ai.item_id = cci.item_id
+
 GROUP BY cc.character_id
+
 LIMIT 20
-
-
-Returns: Table with first 20 characters and how many items they each have.
-(See rpg_db.py)
-
 
 
 - How many Weapons does each character have? (Return first 20 rows)
 
 SELECT COUNT(ai.name)
+
 FROM charactercreator_character AS cc,
+
 armory_item AS ai,
+
 charactercreator_character_inventory AS cci,
+
 armory_weapon as aw
-WHERE cc.character_id = cci.character_id
-AND ai.item_id = cci.item_id
-AND ai.item_id = aw.item_ptr_id
+
+WHERE cc.character_id = cci.
+
+AND ai.item_id = cci.
+
+AND ai.item_id = aw.
+
 GROUP BY cc.character_id
+
 LIMIT 20;
 
-Returns: Table with first 20 characters and how many weapons they each have.
-(See rpg_db.py)
 
 - On average, how many Items does each Character have?
 
