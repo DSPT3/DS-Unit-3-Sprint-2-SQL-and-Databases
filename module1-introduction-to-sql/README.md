@@ -55,7 +55,7 @@ following questions:
 
 302
 
-- How many of each specific subclass?
+**How many of each specific subclass?**
 
 cleric = 75
 
@@ -67,20 +67,20 @@ necromancer = 11
 
 thief = 51
 
-- How many total Items?  174
+**How many total Items?**  
 
-- How many of the Items are weapons? How many are not?
+174
+
+**How many of the Items are weapons? How many are not?**
 
 -Solution using math:
 
     - SELECT * from armory_weapon = 37 are weapons,
-    - Total 
-    
-    (armory_items = 174 - armory_weapons= 37)
-
+    - Total:
+      (armory_items = 174 - armory_weapons= 37)
     - 137 armory items are not weapons.
 
-- Solution using code in DB 
+-Solution using code in DB: 
 
 Solution using code:
 
@@ -102,7 +102,7 @@ results = curs.fetchall()
 
 print('Non-weapons:', results[0][0])
 
-- How many Items does each character have? (Return first 20 rows)
+**How many Items does each character have? (Return first 20 rows)**
 
 SELECT COUNT(ai.name)
 
@@ -121,7 +121,7 @@ GROUP BY cc.character_id
 LIMIT 20
 
 
-- How many Weapons does each character have? (Return first 20 rows)
+**How many Weapons does each character have? (Return first 20 rows)**
 
 SELECT COUNT(ai.name)
 
@@ -144,16 +144,19 @@ GROUP BY cc.character_id
 LIMIT 20;
 
 
-- On average, how many Items does each Character have?
+**On average, how many Items does each Character have?**
 
 SELECT AVG(item_count)
-FROM (SELECT COUNT(item_id) as item_count
+
+FROM (SELECT COUNT(item_id) as 
+
 FROM charactercreator_character_inventory
+
 GROUP BY character_id);
 
 Returns: 2.97350993377483
 
-- On average, how many Weapons does each character have?
+**On average, how many Weapons does each character have?**
 
 SELECT AVG(item_count)
 FROM(SELECT COUNT(item_id) AS item_count
