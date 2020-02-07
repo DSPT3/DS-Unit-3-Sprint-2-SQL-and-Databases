@@ -54,6 +54,7 @@ following questions:
 - How many total Characters are there? 302
 
 - How many of each specific subclass?
+
 cleric = 75
 
 fighter = 68
